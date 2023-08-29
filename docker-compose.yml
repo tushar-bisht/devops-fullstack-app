@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  frontend:
+    image: frontend:v1
+    container_name: frontend 
+    restart: always
+    ports:
+    - '3000:3000'
+    depends_on:
+      - backend
+
+
+  backend:
+    image: backend:v1
+    restart: always
+    container_name: backend
+    ports:
+    - '8080:8080'
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgresuser
+      - DB_PASSWORD=postgrespassword
+      - DB_NAME=postgres
+      - DB_PORT=5432
+      - ALLOWED_ORIGINS=*
+    depends_on:
+      - db
+
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+
+volumes:
+  db:
+
+
+networks:
+  default:
+    external:
+      name: devops
