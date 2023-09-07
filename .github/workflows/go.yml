@@ -47,4 +47,4 @@ jobs:
             docker build . -t frontend:v${{github.run_number}}
             cd /home/ubuntu/devops-fullstack-app/backend
             docker build . -t backend:v${{github.run_number}}
-            /bin/bash /home/ubuntu/devops.sh
+            docker-compose up -d
