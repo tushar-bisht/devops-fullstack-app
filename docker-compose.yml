@@ -2,7 +2,7 @@ version: '3'
 services:
 
   frontend:
-    image: frontend:v1
+    image: frontend:v${{github.run_number}}
     container_name: frontend 
     restart: always
     ports:
@@ -12,7 +12,7 @@ services:
 
 
   backend:
-    image: backend:v1
+    image: backend:v${{github.run_number}}
     restart: always
     container_name: backend
     ports:
