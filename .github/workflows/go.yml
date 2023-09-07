@@ -42,7 +42,7 @@ jobs:
           script: |
             ls
             cd /home/ubuntu/devops-fullstack-app
-            git pull origin ${{ secrets.GIT_URL }}
+            git pull ${{ secrets.GIT_URL }} master
             cd /home/ubuntu/devops-fullstack-app/frontend
             docker build . -t frontend:$BUILD
             cd /home/ubuntu/devops-fullstack-app/backend
