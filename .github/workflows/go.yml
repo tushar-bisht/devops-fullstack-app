@@ -44,7 +44,7 @@ jobs:
             cd /home/ubuntu/devops-fullstack-app
             git pull ${{ secrets.GIT_URL }} master
             cd /home/ubuntu/devops-fullstack-app/frontend
-            docker build . -t frontend:${{github.run_number}}
+            docker build . -t frontend:v${{github.run_number}}
             cd /home/ubuntu/devops-fullstack-app/backend
-            docker build . -t backend:${{github.run_number}}
+            docker build . -t backend:v${{github.run_number}}
             /bin/bash /home/ubuntu/devops.sh
